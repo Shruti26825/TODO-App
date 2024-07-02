@@ -18,6 +18,8 @@ class _FirstscreenState extends State<Firstscreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   //bool?check=prefs.getBool("isLogin");
+  bool isPassVisible=true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,7 @@ class _FirstscreenState extends State<Firstscreen> {
       body:SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 50),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [Center(child: Image.asset("assets/images/signup3.jpg",height: 200,width: 350,)),
@@ -43,11 +45,19 @@ class _FirstscreenState extends State<Firstscreen> {
                 child: Text("let's help to meet up your task.",style: TextStyle(fontSize: 12),),
               ),
               SizedBox(height: 30,),
-              Uihelper.CustomTextField(nameController, 'Enter your name',Icons.account_circle),
+              Uihelper.CustomTextField(nameController, 'Enter your name',Icons.account_circle,false,''),
               SizedBox(height: 30,),
-              Uihelper.CustomTextField(emailController, 'User@gmail.com',Icons.mail),
+              Uihelper.CustomTextField(emailController, 'User@gmail.com',Icons.mail,false,''),
               SizedBox(height: 30,),
-              Uihelper.CustomTextField(passwordController, 'Enter your password',Icons.remove_red_eye),
+              Padding(padding: EdgeInsets.symmetric(horizontal: 20,vertical: 1),
+                child: Uihelper.CustomPassword(passwordController, 'Enter password', "Password",isPassVisible,(){
+                  setState(() {
+                    isPassVisible=!isPassVisible;
+                    log(isPassVisible.toString());
+                  });
+                }),
+              ),
+
               SizedBox(height: 30,),
               Uihelper.CustomButton((){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
@@ -83,4 +93,9 @@ class _FirstscreenState extends State<Firstscreen> {
   //     log("Data Added");
   //   }
   // }
+// void togglePasswordView(){
+//     setState(() {
+//       isPassVisible=!isPassVisible;
+//     });
+// }
 }

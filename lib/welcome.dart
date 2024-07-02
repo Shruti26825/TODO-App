@@ -37,10 +37,10 @@ class _WelcomeState extends State<Welcome> {
                  child: Image.asset("assets/images/img.png"),
                ),
              ),
-             SizedBox(height: 40),
+             SizedBox(height: 59),
              Container(
                child: SizedBox(
-                 height:48,
+                 height:50,
                  width: 450,
                  child: ElevatedButton(onPressed: (){
                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Firstscreen()));

@@ -17,6 +17,7 @@ class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   //bool? check=prefs.getBool("isLogin");
+  bool isPassVisible=true;
 
   @override
   Widget build(BuildContext context) {
@@ -42,16 +43,21 @@ class _LoginState extends State<Login> {
                 ),
                 //Text("Create a new account",style: TextStyle(fontSize: 15),),
                 SizedBox(height: 30,),
-                Uihelper.CustomTextField(emailController, 'User@gmail.com',Icons.mail),
+                Uihelper.CustomTextField(emailController, 'User@gmail.com',Icons.mail,false,''),
                 SizedBox(height: 30,),
-                Uihelper.CustomTextField(passwordController, 'Enter your password',Icons.remove_red_eye),
+               // Uihelper.CustomTextField(passwordController, 'Enter your password',Icons.remove_red_eye,true,"*"),
+                Padding(padding: EdgeInsets.symmetric(horizontal: 20,vertical: 1),
+                  child: Uihelper.CustomPassword(passwordController, 'Enter password', "Password",isPassVisible,(){
+                    setState(() {
+                      isPassVisible=!isPassVisible;
+                      log(isPassVisible.toString());
+                    });
+                  }),
+                ),
+
                 Padding(
                   padding: const EdgeInsets.only(left:190.0),
                   child: TextButton(onPressed: (){}, child: Text("Forgot password?"),
-                    // style: TextButton.styleFrom(
-                    //     foregroundColor: Colors.deepPurple,
-                    //     textStyle: TextStyle(
-                    //         decoration: TextDecoration.underline))
                   ),
                 ),
                 SizedBox(height: 30,),

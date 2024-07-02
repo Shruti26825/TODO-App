@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_application/splashscreen.dart';
+import 'package:to_do_application/task.dart';
 import 'package:to_do_application/welcome.dart';
 
 void main() {
@@ -36,8 +37,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      home: Splashscreen(),
+      //home: Splashscreen(),
       //home: Welcome(),
+      home: Task(),
     );
   }
 }

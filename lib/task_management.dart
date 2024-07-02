@@ -1,6 +1,8 @@
 // import 'dart:js';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:to_do_application/login.dart';
 import 'package:to_do_application/uiHelper.dart';
 
 class TaskManagement extends StatefulWidget {
@@ -11,31 +13,44 @@ class TaskManagement extends StatefulWidget {
 }
 
 class _TaskManagementState extends State<TaskManagement> {
+  TextEditingController taskcontroller=TextEditingController();
   TextEditingController datecontroller= TextEditingController();
   TextEditingController timecontroller = TextEditingController();
-  //TextEditingController emailcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[700],
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(icon: Icon(Icons.arrow_back),
+          onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Login()));
+          },),
         backgroundColor: Colors.blue[600],
-        title: Text('Task Management',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Text('Task Management',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold)),
+            ),
+            Icon(Icons.menu_outlined)
+          ],
+        ),
         centerTitle: true,
       ),
       body: ListView.separated(itemBuilder: (context,index){
         return ListTile(
           title: Text("Meeting",
               style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.blueGrey[700],
                   fontSize: 18,
                   fontWeight: FontWeight.w500),
           ),
-          subtitle: Text("Tomorrow,12:45 PM",style: TextStyle(color: Color(0XFF8BCCF8)),),
+          subtitle: Text("Tomorrow,12:45 PM",style: TextStyle(color: Colors.blueGrey),),
         );
       }, separatorBuilder: (context,index){
         return Divider(
-          color: Colors.white54,
+          color: Color(0XFF8BCCF8),
           thickness: 1.2,
           height: 1,
         );
@@ -55,7 +70,7 @@ class _TaskManagementState extends State<TaskManagement> {
              height: 500,
              width: 500,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
@@ -66,28 +81,21 @@ class _TaskManagementState extends State<TaskManagement> {
                    SizedBox(height: 15),
                     Text("data",style: TextStyle(color: Color(0XFF8BCCF8))
                     ),
-                   TextField(
-                     decoration: InputDecoration(
-                       hintText: 'Enter The Task',
-                       hintStyle: TextStyle(
-                         color: Colors.grey,
-                       ),
-                     ),
-                   ),
+                  Uihelper.CustomtextField(taskcontroller, 'Enter task',null, false),
                    SizedBox(height: 50),
-                   Text("Due Date",style: TextStyle(color: Color(0XFF8BCCF8))
-                   ),
-                   Uihelper.CustomtextField(datecontroller, 'Enter Date',Icons.calendar_month_outlined,false),
-                   SizedBox(height: 30),
-                   Uihelper.CustomtextField(timecontroller, 'Enter Time', null, false),
-                   SizedBox(height: 15),
-                   Uihelper.CustomButton((){
-
-                   }, "Create")
+                   //Text("Due Date",style: TextStyle(color: Color(0XFF8BCCF8))
+                   //),
+                   // Uihelper.CustomtextField(datecontroller, 'Enter Date',Icons.calendar_month_outlined,false),
+                   // SizedBox(height: 30),
+                   // Uihelper.CustomtextField(timecontroller, 'Enter Time', null, false),
+                   // SizedBox(height: 30),
+                   // Uihelper.CustomButton((){
+                   //   //Navigator.push(context, MaterialPageRoute(builder: (context)=>TaskManagement()));
+                   //}, "Create")
                    // Center(
                    //   child: ElevatedButton(onPressed: (){
                    //
-                   //   }, child: Text("Create")),
+                   //   }, child: Text("Create",style: TextStyle(color: Colors.blue[500]))),
                    // )
                    //Uihelper.CustomtextField(timecontroller, 'Enter Time'),
                ],

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class Uihelper{
   static CustomTextField(
-      TextEditingController controller,String text,IconData? icondata){
+      TextEditingController controller,String text,IconData? icondata,bool obscure,String obscureText){
     return Padding(padding: const EdgeInsets.symmetric(horizontal: 20),
       child: TextField(
+        // obscureText:true,
+        // obscuringCharacter: "*",
         controller: controller,
         decoration: InputDecoration(
             hintText: text,
@@ -62,22 +64,60 @@ class Uihelper{
   static CustomtextField(
       TextEditingController controller,String text,IconData? icondata,bool readOnly
      ) {
-    return Padding(padding: const EdgeInsets.symmetric(horizontal: 1),
-      child: TextField(
-        readOnly: readOnly,
-        style: TextStyle(color: Colors.white),
-        //controller: controller,
-        decoration: InputDecoration(
-          hintText:text ,
-          hintStyle: const TextStyle(
-            color: Colors.grey,
+    return Column(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+          TextField(
+          readOnly: readOnly,
+          style: TextStyle(color: Colors.white),
+          //controller: controller,
+          decoration: InputDecoration(
+            hintText:text ,
+            hintStyle: const TextStyle(
+              color: Colors.white,
+            ),
+            suffixIcon: Icon(icondata,color: Colors.white),
+            //border: OutlineInputBorder(
+               // borderRadius: BorderRadius.circular(10)
+            ),
           ),
-          suffixIcon: Icon(icondata,color: Colors.white),
-          //border: OutlineInputBorder(
-             // borderRadius: BorderRadius.circular(10)
-          ),
-        ),
+        ],
       //),
     );
   }
+  // static CustomTextfield(
+  //     TextEditingController controller, String text,bool obscured, VoidCallback onPressed
+  //     ){
+  //    var isPassVisible;
+  //   return TextField(
+  //     obscureText: true,
+  //     controller: controller,
+  //     decoration: InputDecoration(
+  //       suffixIcon: IconButton(
+  //         icon: Icon(isPassVisible?Icons.visibility_off:Icons.visibility
+  //         ),
+  //         onPressed: () {
+  //
+  //         },
+  //       )),
+  //   );
+  //}
+
+static CustomPassword(TextEditingController controller, String text, [String?params,bool?password,VoidCallback?callback]){
+    return TextField(
+      controller: controller,
+      obscureText: password!,
+      decoration: InputDecoration(
+        hintText: text,
+        suffixIcon: IconButton(
+          icon: Icon(password?Icons.visibility_off:Icons.visibility),
+          onPressed: callback,
+        ),
+        //filled: true,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
+}
 }
