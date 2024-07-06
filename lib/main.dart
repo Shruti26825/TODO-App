@@ -37,9 +37,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //home: const MyHomePage(title: 'Flutter Demo Home Page'),
-      //home: Splashscreen(),
+      home: Splashscreen(),
       //home: Welcome(),
-      home: Task(),
+      //home: Task(),
     );
   }
 }

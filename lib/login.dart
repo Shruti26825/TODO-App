@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:to_do_application/firstScreen.dart';
+import 'package:to_do_application/task.dart';
 import 'package:to_do_application/task_management.dart';
 import 'package:to_do_application/uiHelper.dart';
 
@@ -63,7 +64,7 @@ class _LoginState extends State<Login> {
                 SizedBox(height: 30,),
                 Uihelper.CustomButton((){
                   signup(emailController.text.toString(), passwordController.text.toString());
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>TaskManagement()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Task()));
                 } ,"Log In"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

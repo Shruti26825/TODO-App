@@ -1,7 +1,9 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:to_do_application/firstScreen.dart';
+import 'package:to_do_application/login.dart';
+import 'package:to_do_application/task.dart';
 import 'package:to_do_application/welcome.dart';
 
 class Splashscreen extends StatefulWidget {
@@ -17,7 +19,17 @@ class _SplashscreenState extends State<Splashscreen> {
     Timer(Duration(seconds:4),()async{
       SharedPreferences prefs=await SharedPreferences.getInstance();
       bool?check=prefs.getBool("isLogin");
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>Welcome()));
+      if(check!=null){
+        if(check){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Task()));
+        }
+        else{
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>Firstscreen()));
+        }
+      }
+      else{
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>Firstscreen()));
+      }
     });
         super.initState();
   }

@@ -83,19 +83,4 @@ class _FirstscreenState extends State<Firstscreen> {
       ),
     );
   }
-  // signup(String email,String password) async {
-  //   if(email=="" || password==""){
-  //     return Uihelper.CustomAlertBox(context, "Enter Requried field");
-  //   }
-  //   else{
-  //     SharedPreferences prefs = await SharedPreferences.getInstance();
-  //     prefs.setBool("isLogin", true);
-  //     log("Data Added");
-  //   }
-  // }
-// void togglePasswordView(){
-//     setState(() {
-//       isPassVisible=!isPassVisible;
-//     });
-// }
 }

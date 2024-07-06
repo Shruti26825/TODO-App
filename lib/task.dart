@@ -28,6 +28,7 @@ class _TaskState extends State<Task> {
       todoList.removeAt(index);
     });
   }
+  bool isValue=false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +63,17 @@ class _TaskState extends State<Task> {
                             padding: EdgeInsets.all(5),
                             child: Row(
                               children: [
+                                Expanded(
+                                  flex:20,
+                                  child: Checkbox(value: isValue, onChanged: (Value) {
+                                    setState(() {
+                                      isValue=Value!;
+                                    });
+                                  },shape: CircleBorder(),
+                                    overlayColor: WidgetStateProperty.all(Colors.grey),
+                                    checkColor: Colors.white,
+                                  ),
+                                ),
                                 Expanded(
                                   flex:80,
                                   child: Text(todoList[index]["value"].toString(),
@@ -115,8 +127,8 @@ class _TaskState extends State<Task> {
                                   ),
                                   fillColor: Colors.white,
                                   filled: true,
-                                  labelText: 'Create Task...',labelStyle: TextStyle(
-                                  color: Colors.indigo[900],
+                                  labelText: 'Enter Task...',labelStyle: TextStyle(
+                                  color: Colors.blue[600],
                                   fontWeight: FontWeight.bold,
                               )
                               ),
@@ -133,11 +145,12 @@ class _TaskState extends State<Task> {
                         child: ElevatedButton(onPressed: (){
                           addList();
 
-                        },child: Container(
-                            height: 15,
+                        },style:ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Colors.blueAccent)),
+                            child: Container(
+                            height: 20,
                             width: double.infinity,
                             alignment: Alignment.center,
-                            child: Text('Add',style: TextStyle(color: Colors.blue[500]),)))),
+                            child: Text('Add',style: TextStyle(fontWeight: FontWeight.bold,color: Colors.white),)))),
 
 
                   ],
